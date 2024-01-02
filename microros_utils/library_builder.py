@@ -104,6 +104,8 @@ class Build:
         print("----------------------------------------")
         print(self.python_env)
         print("----------------------------------------")
+        print(self.env)
+        print("----------------------------------------")
         command = "cd {} && source {} && colcon build --cmake-args -DBUILD_TESTING=OFF -DPython3_EXECUTABLE=`which python`".format(self.dev_folder, self.python_env)
         print(command)
         print("----------------------------------------")
