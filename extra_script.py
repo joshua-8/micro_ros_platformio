@@ -25,8 +25,6 @@ boards_metas = {
 
 }
 
-print("Micro-ROS extra script loaded!")
-
 project_options = env.GetProjectConfig().items(env=env["PIOENV"], as_dict=True)
 main_path = os.path.realpath(".")
 global_env = DefaultEnvironment()
