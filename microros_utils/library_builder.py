@@ -101,9 +101,12 @@ class Build:
     def build_dev_environment(self):
         print("Building micro-ROS dev dependencies")
         print(self.dev_folder)
+        print("----------------------------------------")
         print(self.python_env)
         print("----------------------------------------")
         command = "cd {} && . {} && colcon build --cmake-args -DBUILD_TESTING=OFF -DPython3_EXECUTABLE=`which python`".format(self.dev_folder, self.python_env)
+        print(command)
+        print("----------------------------------------")
         result = run_cmd(command, env=self.env)
 
         if 0 != result.returncode:
