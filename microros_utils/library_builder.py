@@ -81,6 +81,8 @@ class Build:
 
         if (ROS_DISTRO):
             PATH = os.getenv('PATH')
+            print("ros_distro if")
+            print(PATH)
             os.environ['PATH'] = PATH.replace('/opt/ros/{}/bin:'.format(ROS_DISTRO), '')
             os.environ.pop('AMENT_PREFIX_PATH', None)
 
@@ -113,7 +115,7 @@ class Build:
         print("----------------------------------------")
         print(self.env)
         print("----------------------------------------")
-        command = "cd {} && source {} && colcon build --cmake-args -DBUILD_TESTING=OFF -DPython3_EXECUTABLE=`which python`".format(self.dev_folder, self.python_env)
+        command = "cd {} && . {} && colcon build --cmake-args -DBUILD_TESTING=OFF -DPython3_EXECUTABLE=`which python`".format(self.dev_folder, self.python_env)
         print(command)
         print("----------------------------------------")
         result = run_cmd(command, env=self.env)
@@ -190,7 +192,7 @@ class Build:
 
         common_meta_path = self.library_folder + '/metas/common.meta'
         colcon_command = '. {} && colcon build --merge-install --packages-ignore-regex=.*_cpp --metas {} {} {} --cmake-args -DCMAKE_POSITION_INDEPENDENT_CODE:BOOL=OFF  -DTHIRDPARTY=ON  -DBUILD_SHARED_LIBS=OFF  -DBUILD_TESTING=OFF  -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE={} -DPython3_EXECUTABLE=`which python`'.format(self.python_env, common_meta_path, meta_file, user_meta, toolchain_file)
-        command = "cd {} && source {}/install/setup.sh && {}".format(self.mcu_folder, self.dev_folder, colcon_command)
+        command = "cd {} && . {}/install/setup.sh && {}".format(self.mcu_folder, self.dev_folder, colcon_command)
         result = run_cmd(command, env=self.env)
 
         if 0 != result.returncode:
