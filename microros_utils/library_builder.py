@@ -76,6 +76,8 @@ class Build:
 
     def check_env(self):
         ROS_DISTRO = os.getenv('ROS_DISTRO')
+        print("checking env")
+        print(ROS_DISTRO)
 
         if (ROS_DISTRO):
             PATH = os.getenv('PATH')
@@ -87,6 +89,11 @@ class Build:
         if (RMW_IMPLEMENTATION):
             os.environ['RMW_IMPLEMENTATION'] = "rmw_microxrcedds"
 
+
+        print(os.environ['PATH'])
+        print("---------")
+        print("---------")
+        print("---------")
         self.env = os.environ.copy()
 
     def download_dev_environment(self):
