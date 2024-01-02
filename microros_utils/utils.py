@@ -1,4 +1,5 @@
 import subprocess
+import sys
 
 def run_cmd(command, env=None):
     print("version")
